@@ -1,0 +1,527 @@
+/* ============================================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ============================================================
+   O navegador aplica estilos padrão em alguns elementos (margens,
+   paddings, etc). O "reset" serve para zerá-los e começar do zero,
+   garantindo consistência entre diferentes navegadores.
+*/
+
+/* O seletor "*" seleciona TODOS os elementos da página */
+* {
+    /* Remove margens padrão de todos os elementos */
+    margin: 0;
+
+    /* Remove o espaçamento interno padrão de todos os elementos */
+    padding: 0;
+
+    /* 
+        box-sizing: border-box → faz com que padding e borda sejam
+        incluídos dentro da largura/altura do elemento.
+        Sem isso, um elemento com width:100px + padding:10px ficaria com 120px.
+        Com isso, ele continua com 100px no total.
+    */
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   VARIÁVEIS CSS (Custom Properties)
+   ============================================================
+   Variáveis CSS são valores reutilizáveis que você define uma vez
+   e usa em todo o arquivo. Facilita muito quando você quer mudar
+   uma cor ou fonte em apenas um lugar.
+
+   ":root" → seleciona o elemento raiz do HTML (equivalente ao <html>).
+   As variáveis são definidas com "--nome-da-variavel: valor;"
+   e usadas com "var(--nome-da-variavel)".
+*/
+:root {
+    --cor-primaria: #6c63ff;
+    /* Roxo moderno — cor principal do site */
+    --cor-secundaria: #ff6584;
+    /* Rosa vibrante — cor de destaque */
+    --cor-fundo: #0f0f1a;
+    /* Azul muito escuro — fundo da página */
+    --cor-card: #1a1a2e;
+    /* Azul escuro — fundo dos cartões/seções */
+    --cor-texto: #e0e0e0;
+    /* Cinza claro — cor do texto principal */
+    --cor-texto-fraco: #a0a0b0;
+    /* Cinza médio — textos secundários */
+    --fonte-principal: 'Poppins', sans-serif;
+    /* Fonte importada do Google Fonts */
+    --borda-raio: 12px;
+    /* Arredondamento padrão das bordas */
+    --sombra: 0 4px 20px rgba(108, 99, 255, 0.2);
+    /* Sombra roxa suave */
+}
+
+/* ============================================================
+   ESTILOS DO BODY (CORPO DA PÁGINA)
+   ============================================================ */
+body {
+    /* Aplica a fonte definida na variável --fonte-principal */
+    font-family: var(--fonte-principal);
+
+    /* Cor de fundo da página inteira */
+    background-color: var(--cor-fundo);
+
+    /* Cor padrão de todo o texto da página */
+    color: var(--cor-texto);
+
+    /* 
+        line-height → altura das linhas. 
+        Valor 1.6 significa 1.6x o tamanho da fonte.
+        Melhora muito a legibilidade do texto.
+    */
+    line-height: 1.6;
+}
+
+/* ============================================================
+   WRAPPER (CONTÊINER PRINCIPAL)
+   ============================================================
+   "id=warp" é selecionado com "#warp". 
+   O # no CSS seleciona elementos pelo ID.
+*/
+#warp {
+    /* Define uma largura máxima — a página não ficará maior que isso */
+    max-width: 860px;
+
+    /* 
+        margin: auto → centraliza o elemento horizontalmente na página.
+        O "auto" distribui a margem igualmente nos dois lados.
+    */
+    margin: 0 auto;
+
+    /* 
+        padding: 20px → cria um espaço interno de 20px em todos os lados.
+        Evita que o conteúdo "cole" nas bordas.
+    */
+    padding: 20px;
+}
+
+/* ============================================================
+   HEADER (CABEÇALHO)
+   ============================================================
+   Seletores sem # ou . selecionam a TAG diretamente.
+   "header" seleciona todas as tags <header> da página.
+*/
+header {
+    /* Cor de fundo do cabeçalho usando a variável */
+    background-color: var(--cor-card);
+
+    /* 
+        border-radius → arredonda os cantos do elemento.
+        Usamos a variável --borda-raio (que vale 12px).
+    */
+    border-radius: var(--borda-raio);
+
+    /* 
+        padding: 30px → espaço interno de 30px em todos os lados.
+        Também pode ser escrito como padding: 30px 30px 30px 30px;
+        (topo, direita, baixo, esquerda — em sentido horário)
+    */
+    padding: 30px;
+
+    /* Aplica a sombra definida na variável */
+    box-shadow: var(--sombra);
+
+    /* Margem inferior para separar o cabeçalho do conteúdo abaixo */
+    margin-bottom: 30px;
+
+    /* 
+        border-left: 4px solid → cria uma borda sólida de 4px apenas no lado esquerdo.
+        Dá um efeito de "destaque" visual.
+    */
+    border-left: 4px solid var(--cor-primaria);
+}
+
+/* Classe .header-content → selecionada com "." no CSS */
+.header-content {
+    /* 
+        display: flex → ativa o Flexbox.
+        Flexbox é um sistema de layout que organiza os filhos
+        do elemento em linha (por padrão) ou coluna.
+    */
+    display: flex;
+
+    /* 
+        align-items: center → alinha os filhos verticalmente ao centro.
+        (funciona com display: flex)
+    */
+    align-items: center;
+
+    /* 
+        gap: 20px → espaçamento entre os filhos do flex container.
+        Mais simples do que usar margin em cada filho.
+    */
+    gap: 20px;
+
+    /* Margem inferior para separar do nav */
+    margin-bottom: 20px;
+}
+
+/* ============================================================
+   AVATAR (FOTO DE PERFIL)
+   ============================================================ */
+.avatar {
+    /* Define largura e altura fixas */
+    width: 90px;
+    height: 90px;
+
+    /* 
+        border-radius: 50% → transforma o elemento em um círculo perfeito!
+        50% do tamanho em todos os cantos = círculo.
+    */
+    border-radius: 50%;
+
+    /* 
+        object-fit: cover → garante que a imagem preencha o espaço
+        sem distorcer. Corta o excesso se necessário.
+    */
+    object-fit: cover;
+
+    /* Borda colorida ao redor da foto usando a cor primária */
+    border: 3px solid var(--cor-primaria);
+
+    /* 
+        box-shadow → sombra ao redor da imagem.
+        Aqui criamos um efeito de "brilho" (glow) roxo.
+        Parâmetros: deslocamento-x deslocamento-y desfoque cor
+    */
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+}
+
+/* ============================================================
+   TEXTO DO HEADER
+   ============================================================ */
+.header-text h1 {
+    /* 
+        Este seletor é mais específico: seleciona <h1> que está
+        DENTRO de um elemento com classe "header-text".
+    */
+    font-size: 2rem;
+    /* "rem" = relativo ao tamanho de fonte do <html>, geralmente 16px. 2rem = 32px */
+    font-weight: 700;
+    /* Negrito (700 = bold) */
+
+    /* 
+        background: linear-gradient → cria um degradê de cor.
+        O texto recebe o gradiente como cor (técnica com -webkit-background-clip).
+    */
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+    -webkit-background-clip: text;
+    /* Aplica o fundo somente no texto */
+    -webkit-text-fill-color: transparent;
+    /* Torna o preenchimento do texto transparente para ver o gradiente */
+    background-clip: text;
+}
+
+.subtitulo {
+    /* Cor mais fraca para texto secundário */
+    color: var(--cor-texto-fraco);
+    font-size: 0.95rem;
+
+    /* Margem superior pequena para dar espaço do h1 */
+    margin-top: 4px;
+}
+
+/* ============================================================
+   NAVEGAÇÃO (MENU)
+   ============================================================ */
+.nav-lista {
+    /* Remove os bullets (bolinhas) padrão da lista */
+    list-style: none;
+
+    /* Usa Flexbox para colocar os itens lado a lado */
+    display: flex;
+
+    /* gap: espaçamento entre os itens */
+    gap: 12px;
+
+    /* Faz a lista "quebrar" para a próxima linha se não couber */
+    flex-wrap: wrap;
+}
+
+/* Selecionamos o <a> dentro de .nav-lista */
+.nav-lista a {
+    /* Remove o sublinhado padrão dos links */
+    text-decoration: none;
+
+    color: var(--cor-texto);
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    /* Padding ao redor do texto do link */
+    padding: 8px 18px;
+
+    /* Borda arredondada (pill/pílula) */
+    border-radius: 50px;
+
+    /* Borda sutil */
+    border: 1px solid rgba(108, 99, 255, 0.4);
+
+    /* 
+        transition → define uma animação suave quando alguma propriedade muda.
+        "all 0.3s ease" → todas as propriedades animam em 0.3 segundos suavemente.
+        Isso é o que faz o efeito de hover ser "gradual" e não brusco.
+    */
+    transition: all 0.3s ease;
+}
+
+/* 
+    :hover → pseudo-classe que aplica estilos quando o mouse 
+    passa por cima do elemento.
+*/
+.nav-lista a:hover {
+    /* Muda o fundo para a cor primária ao passar o mouse */
+    background-color: var(--cor-primaria);
+
+    /* Muda a cor do texto para branco */
+    color: white;
+
+    /* Remove a borda ao fazer hover */
+    border-color: transparent;
+
+    /* 
+        transform: translateY(-2px) → move o elemento 2px para cima.
+        Cria um efeito de "levitar" ao passar o mouse.
+        Funciona em conjunto com o "transition" definido acima.
+    */
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   CONTEÚDO PRINCIPAL (MAIN)
+   ============================================================ */
+main {
+    /* 
+        display: flex + flex-direction: column → organiza as <section>
+        filhas em coluna (uma embaixo da outra).
+    */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* Espaço entre as seções */
+}
+
+/* ============================================================
+   SEÇÃO DA IMAGEM DE DESTAQUE
+   ============================================================ */
+.secao-imagem {
+    background-color: var(--cor-card);
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+
+    /* 
+        overflow: hidden → esconde qualquer conteúdo que saia
+        dos limites do elemento. Importante para que a imagem
+        respeite o border-radius do contêiner.
+    */
+    overflow: hidden;
+
+    /* Centraliza o conteúdo */
+    text-align: center;
+}
+
+.imagem-destaque {
+    /* 
+        width: 100% → a imagem ocupa 100% da largura do pai.
+        Assim ela é responsiva e se adapta ao tamanho da tela.
+    */
+    width: 100%;
+
+    /* Altura máxima da imagem */
+    max-height: 320px;
+
+    /* Mantém proporção sem distorcer */
+    object-fit: cover;
+
+    /* 
+        display: block → imagens são inline por padrão, o que
+        pode causar um pequeno espaço embaixo delas. 
+        "block" remove esse espaço.
+    */
+    display: block;
+
+    /* Transição suave para o efeito de hover */
+    transition: transform 0.4s ease;
+}
+
+/* Efeito de zoom suave ao passar o mouse na imagem */
+.imagem-destaque:hover {
+    /* 
+        transform: scale(1.03) → aumenta o elemento em 3%.
+        Como o pai tem overflow:hidden, o excesso é cortado,
+        criando um zoom elegante.
+    */
+    transform: scale(1.03);
+}
+
+.legenda-imagem {
+    padding: 12px;
+    color: var(--cor-texto-fraco);
+    font-size: 0.9rem;
+
+    /* Letra em maiúscula (pequenas caps) */
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   SEÇÃO DO FORMULÁRIO
+   ============================================================ */
+.secao-formulario {
+    background-color: var(--cor-card);
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+    padding: 30px;
+}
+
+/* h2 dentro da seção do formulário */
+.secao-formulario h2 {
+    font-size: 1.4rem;
+    color: var(--cor-primaria);
+    margin-bottom: 20px;
+
+    /* 
+        padding-bottom → espaço abaixo do texto do h2.
+        Junto com o border-bottom cria um separador visual.
+    */
+    padding-bottom: 10px;
+
+    /* Linha inferior decorativa */
+    border-bottom: 1px solid rgba(108, 99, 255, 0.3);
+}
+
+/* O formulário em si */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    /* Campos um abaixo do outro */
+    gap: 12px;
+    /* Espaço entre os campos */
+}
+
+/* Estilo dos rótulos (labels) */
+.formulario label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto-fraco);
+
+    /* Deixa uma pequena margem acima de cada label (exceto o primeiro) */
+    margin-top: 8px;
+}
+
+/* Estilo dos campos de input */
+.formulario input {
+    /* Padding interno no campo de texto */
+    padding: 12px 15px;
+
+    /* Fundo levemente mais claro que o card */
+    background-color: rgba(255, 255, 255, 0.05);
+
+    /* Borda sutil */
+    border: 1px solid rgba(108, 99, 255, 0.3);
+
+    border-radius: 8px;
+
+    /* A cor do texto digitado */
+    color: var(--cor-texto);
+
+    /* Herda a fonte do body (inputs não herdam automaticamente) */
+    font-family: inherit;
+    font-size: 1rem;
+
+    /* Transição para o efeito de foco */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 
+    :focus → pseudo-classe que aplica estilos quando o elemento
+    está com foco (quando o usuário clicou ou navegou até ele com Tab).
+*/
+.formulario input:focus {
+    /* Remove o contorno padrão do navegador */
+    outline: none;
+
+    /* Muda a cor da borda para a cor primária */
+    border-color: var(--cor-primaria);
+
+    /* Adiciona um brilho roxo em volta do campo */
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+/* ============================================================
+   BOTÃO
+   ============================================================ */
+.formulario button {
+    /* Margem no topo para separar dos inputs */
+    margin-top: 8px;
+
+    padding: 13px;
+
+    /* 
+        Degradê como fundo do botão.
+        "135deg" define o ângulo do gradiente.
+    */
+    background: linear-gradient(135deg, var(--cor-primaria), #8a84ff);
+
+    /* Remove a borda padrão dos botões */
+    border: none;
+
+    border-radius: 8px;
+
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+
+    /* 
+        cursor: pointer → muda o cursor para uma "mãozinha" 
+        ao passar sobre o botão (indica que é clicável).
+    */
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse no botão */
+.formulario button:hover {
+    /* Escurece/intensifica o gradiente */
+    background: linear-gradient(135deg, #5a52d5, var(--cor-primaria));
+
+    /* Sobe 2px — mesmo truque dos links do nav */
+    transform: translateY(-2px);
+
+    /* Sombra mais intensa para dar profundidade */
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+}
+
+/* Efeito ao clicar no botão (clique ativo) */
+.formulario button:active {
+    /* Desce 1px — simula o "press" de um botão físico */
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ============================================================
+   FOOTER (RODAPÉ)
+   ============================================================ */
+footer {
+    /* Centraliza o texto */
+    text-align: center;
+
+    /* Espaço em cima e embaixo do rodapé */
+    padding: 20px;
+
+    /* Margem superior para separar do conteúdo principal */
+    margin-top: 30px;
+
+    color: var(--cor-texto-fraco);
+    font-size: 0.85rem;
+
+    /* 
+        border-top → linha decorativa no topo do rodapé.
+        rgba() → cor em formato RGB com transparência (último valor: 0.2 = 20% opaco).
+    */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

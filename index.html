@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- 
+    <!DOCTYPE html> → Declara que este é um documento HTML5.
+    Sem isso, o navegador pode interpretar a página de forma errada.
+-->
+
+<!-- 
+    <html lang="pt-br"> → Elemento raiz da página.
+    O atributo "lang" informa ao navegador (e leitores de tela) 
+    que o idioma desta página é o Português do Brasil.
+-->
+<html lang="pt-br">
+
+<head>
+    <!-- 
+        A tag <head> contém informações SOBRE a página (metadados).
+        Nada aqui aparece visualmente na tela.
+    -->
+
+    <!-- Define a codificação de caracteres como UTF-8, 
+         que suporta letras com acento (ã, é, ç, etc.) -->
+    <meta charset="UTF-8">
+
+    <!-- Garante que a página seja exibida corretamente em celulares.
+         "width=device-width" → usa a largura real do dispositivo.
+         "initial-scale=1.0" → sem zoom inicial. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece na aba do navegador -->
+    <title>Site Anderson</title>
+
+    <!-- 
+        Importa o arquivo de estilos externo (style.css).
+        rel="stylesheet" → diz ao navegador que é uma folha de estilos.
+        href="style.css"  → caminho para o arquivo CSS.
+    -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Importa a fonte "Poppins" do Google Fonts para ter uma tipografia mais bonita -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- 
+    <body> → Tudo que está aqui APARECE na tela para o usuário.
+    O atributo "id" serve para identificar esse elemento de forma única,
+    podendo ser selecionado no CSS com "#warp".
+-->
+
+<body id="warp">
+
+    <!-- ====================== CABEÇALHO ====================== -->
+    <!-- 
+        <header> → Tag semântica que representa o cabeçalho da página.
+        Usar tags semânticas (header, nav, main, footer) é boa prática:
+        elas ajudam motores de busca e leitores de tela a entender a estrutura.
+    -->
+    <header>
+
+        <!-- Contêiner para agrupar a foto e as informações -->
+        <div class="header-content">
+
+            <!-- 
+                <img> → Exibe uma imagem.
+                src   → caminho da imagem (pode ser local ou uma URL).
+                alt   → texto alternativo (lido por leitores de tela 
+                         e exibido se a imagem não carregar).
+                A classe "avatar" permite estilizar só esta imagem no CSS.
+            -->
+            <img src="./images/imagem.jpeg" alt="Foto de perfil do Anderson" class="avatar">
+
+            <!-- Bloco com o texto do cabeçalho -->
+            <div class="header-text">
+                <!-- 
+                    <h1> → Título principal da página. 
+                    Deve haver apenas UM <h1> por página (boas práticas de SEO).
+                -->
+                <h1>Site Anderson</h1>
+
+                <!-- <p> → Parágrafo. Usado para textos corridos. -->
+                <p class="subtitulo">Bem-vindo ao meu primeiro site em HTML!</p>
+            </div>
+        </div>
+
+        <!-- ====================== NAVEGAÇÃO ====================== -->
+        <!-- 
+            <nav> → Tag semântica para menus de navegação.
+            Indica ao navegador que este bloco contém links de navegação.
+        -->
+        <nav>
+            <!-- 
+                <ul> → Lista não-ordenada (unordered list). Exibe bullets por padrão.
+                <li> → Item de lista (list item). Sempre filho de <ul> ou <ol>.
+                <a>  → Âncora (link). 
+                       href        → destino do link.
+                       target="_blank" → abre o link em uma nova aba.
+            -->
+            <ul class="nav-lista">
+                <li><a href="https://www.google.com.br" target="_blank">Google 1</a></li>
+                <li><a href="https://www.google.com.br" target="_blank">Google 2</a></li>
+                <li><a href="https://www.google.com.br" target="_blank">Google 3</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- ====================== CONTEÚDO PRINCIPAL ====================== -->
+    <!-- 
+        <main> → Tag semântica que delimita o conteúdo principal da página.
+        Deve haver apenas um <main> por página.
+    -->
+    <main>
+
+        <!-- Seção da imagem do Tanjiro -->
+        <!-- 
+            <section> → Agrupa conteúdo relacionado dentro do <main>.
+            Diferente de <div>, ela tem significado semântico.
+        -->
+        <section class="secao-imagem">
+            <!-- 
+                Aqui a imagem vem de uma URL externa (da internet).
+                O src aponta para um endereço web, e não um arquivo local.
+            -->
+            <img src="https://images.wallpapersden.com/image/download/tanjiro-kamado-cool-art-demon-slayer_bWZnZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg"
+                alt="Arte do Tanjiro Kamado de Demon Slayer" class="imagem-destaque">
+            <!-- Legenda da imagem -->
+            <p class="legenda-imagem">🔥 Tanjiro Kamado — Demon Slayer</p>
+        </section>
+
+        <!-- Seção do formulário de contato -->
+        <section class="secao-formulario">
+
+            <h2>Entre em Contato</h2>
+
+            <!-- 
+                <form> → Define um formulário.
+                action  → URL para onde os dados serão enviados ao clicar em "Enviar".
+                          (Deixamos vazio por enquanto — significa que envia para a mesma página)
+            -->
+            <form action="" class="formulario">
+
+                <!-- 
+                    <label> → Rótulo de um campo de formulário.
+                    for="nome" → associa este label ao input com id="nome".
+                    Isso melhora a acessibilidade: ao clicar no label, 
+                    o input correspondente recebe o foco.
+                -->
+                <label for="nome">Seu nome:</label>
+                <!-- 
+                    <input> → Campo de entrada de dados.
+                    type="text"  → aceita qualquer texto.
+                    name="nome"  → nome do campo (enviado no formulário).
+                    id="nome"    → identificador único, ligado ao <label for="nome">.
+                    placeholder  → texto de dica exibido quando o campo está vazio.
+                -->
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome aqui...">
+
+                <label for="email">Seu e-mail:</label>
+                <!-- 
+                    type="email" → o navegador valida automaticamente 
+                    se o texto tem formato de e-mail (ex: algo@exemplo.com).
+                -->
+                <input type="email" name="email" id="email" placeholder="seu@email.com">
+
+                <!-- 
+                    <button type="submit"> → Botão que envia o formulário.
+                    type="submit" → ao clicar, dispara o envio para o "action" do <form>.
+                -->
+                <button type="submit">Enviar ✉️</button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ====================== RODAPÉ ====================== -->
+    <!-- 
+        <footer> → Tag semântica para o rodapé da página.
+        Geralmente contém créditos, copyright, links secundários.
+    -->
+    <footer>
+        <!-- 
+            &copy; → É uma "entidade HTML", um código especial 
+            que representa o símbolo de copyright © .
+        -->
+        <p>&copy; 2025 Site Anderson. Feito com 💙 e HTML.</p>
+    </footer>
+
+</body>
+
+</html>
